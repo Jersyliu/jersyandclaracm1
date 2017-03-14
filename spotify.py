@@ -14,7 +14,7 @@ def get_artist(artist_id):
 def search_by_artist_name(name):
 	myparams = {'type': 'album,artist,playlist,track'}
 	myparams['q'] = name
-	myparams['limit'] = 6
+	myparams['limit'] = 3
 	resp = requests.get(SEARCH_ENDPOINT, params=myparams)
 	return resp.json()
 
