@@ -1,0 +1,150 @@
+{% extends "bassee.html" %}
+
+{% block content %}
+    <!-- Page Content -->
+    <br>
+    <div class="container">
+
+        <!-- Introduction Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">What's Related On Spotify!
+                    <small>It's Nice to See What I Am Missing And Make Up!</small>
+                </h1>
+                <p>Here is the content related to your chosen keywork on Spotify, which includes infomation about albums, tracks, artists and playlists!</p>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- Team Members Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Albums 	&nbsp; 
+                	<small>Total result: {{ albums["total"] }}</small> 	&nbsp;  <small>Showing: {{ albums["showing"]}}</small>
+                </h2>
+                <br>
+            </div>
+            {% for item in albums["items"]%}
+            	<div class="col-lg-4 col-sm-6 text-center">
+            		{% if 'images' in item and item['images']|length() > 0  %}
+	                	<img class="img-circle img-responsive img-center" src="{{ item['images'][0]['url'] }}" alt="" style="width:300px;height:300px;">
+	                {% else %}
+	                	<img class="img-circle img-responsive img-center" src="/static/images/patterns/cuadros.png" alt="" style="width:300px;height:300px;">
+	                {% endif %}
+	                
+	                <br>
+	                <h3><a href="{{ item['external_urls']['spotify']}}">{{ item["name"] }}</a><br>
+	                    <small>
+	                    	Artist :
+			                {% for i in item["artists"] %}
+			                	<a href="{{ i['external_urls']['spotify']}}">{{ i["name"] }}</a>
+			                {% endfor %} 
+	                    </small>
+	                </h3>
+            	</div>
+            {% endfor %}
+        </div>
+
+        <br><br>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Artists 	&nbsp; 
+                	<small>Total result: {{ artists["total"] }}</small> 	&nbsp;  <small>Showing: {{ artists["showing"]}}</small>
+                </h2>
+                <br>
+            </div>
+          
+            {% for item in artists["items"]%}
+            	<div class="col-lg-4 col-sm-6 text-center">
+            		{% if 'images' in item and item['images']|length() > 0 %}
+	                	<img class="img-circle img-responsive img-center" src="{{ item['images'][0]['url'] }}" alt="" style="width:300px;height:300px;">
+	                {% else %}
+	                	<img class="img-circle img-responsive img-center" src="/static/images/patterns/cuadros.png" alt="" style="width:300px;height:300px;">
+	                {% endif %}
+	               
+	                <br>
+	                <h3><a href="{{ item['external_urls']['spotify']}}">{{ item["name"] }}</a><br>
+	                    <small>
+	                    	Popularity : {{item["popularity"]}} <br>
+	                    	Followers : {{item["followers"]["total"]}} <br>
+	                    	Genres : {{item["genres"]}}
+	                    </small>
+	                </h3>
+            	</div>
+            {% endfor %}
+        </div>
+
+        <br><br>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Playlists 	&nbsp; 
+                	<small>Total result: {{ playlists["total"] }}</small> 	&nbsp;  <small>Showing: {{ playlists["showing"]}}</small>
+                </h2>
+                <br>
+            </div>
+            
+            {% for item in playlists["items"]%}
+            	<div class="col-lg-4 col-sm-6 text-center">
+            		{% if 'images' in item and item['images']|length() > 0  %}
+	                	<img class="img-circle img-responsive img-center" src="{{ item['images'][0]['url'] }}" alt="" style="width:300px;height:300px;">
+	                {% else %}
+	                	<img class="img-circle img-responsive img-center" src="/static/images/patterns/cuadros.png" alt="" style="width:300px;height:300px;">
+	                {% endif %}
+	                <br>
+	                <h3><a href="{{ item['external_urls']['spotify']}}">{{ item["name"] }}</a><br>
+	                    <small>
+	                    	Tracks : {{item["tracks"]["total"]}} <br>
+	                    	Owner : <a href="{{ item['owner']['external_urls']['spotify']}}">{{ item["owner"]["id"] }}</a>
+	                    </small>
+	                </h3>
+            	</div>
+            {% endfor %}
+        </div>
+        <br><br>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Tracks 	&nbsp; 
+                	<small>Total result: {{ tracks["total"] }}</small> 	&nbsp;  <small>Showing: {{ tracks["showing"]}}</small>
+                </h2>
+                <br>
+            </div>
+          
+            {% for item in tracks["items"]%}
+            	<div class="col-lg-4 col-sm-6 text-center">
+            		{% if 'albums' in item and 'images' in item['albums']['images'] and item['albums']['images']|length() > 0  %}
+	                	<img class="img-circle img-responsive img-center" src="{{ item['albums']['images'][0]['url'] }}" alt="" style="width:300px;height:300px;">
+	                {% elif 'images' in item and item['images']|length() > 0  %}
+	                	<img class="img-circle img-responsive img-center" src="{{ item['images'][0]['url'] }}" alt="" style="width:300px;height:300px;">
+	                {% else %}
+	                	<img class="img-circle img-responsive img-center" src="/static/images/patterns/cuadros.png" alt="" style="width:300px;height:300px;">
+	                {% endif %}
+	                <br>
+	                <h3><a href="{{ item['external_urls']['spotify']}}">{{ item["name"] }}</a><br>
+	                    <small>
+	                    	Artist :
+			                {% for i in item["artists"] %}
+			                	<a href="{{ i['external_urls']['spotify']}}">{{ i["name"] }}</a>
+			                {% endfor %} 
+			                <br>
+			                Duration in ms : {{ item["duration_ms"]}} <br>
+			                Track Number : {{item["track_number"]}} <br>
+							Disc Number : {{item["disc_number"]}} <br>
+							Popularity : {{item["popularity"]}} <br>
+	                    </small>
+	                </h3>
+            	</div>
+            {% endfor %}
+        </div>
+
+        <br><br>
+
+
+    </div>
+
+{% endblock %} 
