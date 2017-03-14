@@ -38,11 +38,12 @@
 	                    <small>
 	                    	Artist :
 			                {% for i in item["artists"] %}
-			                	<a href="{{ i['external_urls']['spotify']}}">{{ i["name"] }}</a>
+			                	<a href="{{ i['external_urls']['spotify']}}">#{{ i["name"] }}#</a>
 			                {% endfor %} 
 	                    </small>
 	                </h3>
             	</div>
+                <br><br>
             {% endfor %}
         </div>
 
@@ -73,6 +74,7 @@
 	                    </small>
 	                </h3>
             	</div>
+                <br><br>
             {% endfor %}
         </div>
 
@@ -102,6 +104,7 @@
 	                    </small>
 	                </h3>
             	</div>
+                <br><br>
             {% endfor %}
         </div>
         <br><br>
@@ -129,7 +132,7 @@
 	                    <small>
 	                    	Artist :
 			                {% for i in item["artists"] %}
-			                	<a href="{{ i['external_urls']['spotify']}}">{{ i["name"] }}</a>
+			                	<a href="{{ i['external_urls']['spotify']}}">#{{ i["name"] }}#</a>
 			                {% endfor %} 
 			                <br>
 			                Duration in ms : {{ item["duration_ms"]}} <br>
@@ -139,6 +142,7 @@
 	                    </small>
 	                </h3>
             	</div>
+                <br><br>
             {% endfor %}
         </div>
 
