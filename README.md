@@ -11,6 +11,6 @@ API’S and ENDPOINTS USED GitHub Commit times User location User name Tumblr Bl
 Main Tools:<br>
 Flask Python HTML/CSS/JavaScript
 <br><br>
-<strong>Main Dependencies:</strong><br> 
+Main Dependencies:<br> 
 Flask_github Pytumblr Bootstrap jQuery<br> 
 We modified the source codes of the first two packages so that they are compatible under python3.5. They are imported as separated .py file and they are not in the requirements.txt)
